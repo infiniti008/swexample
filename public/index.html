@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="16x16" href="icon.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <meta charset="UTF-8">
+    <title>Service Worker Example</title>
+</head>
+<body>
+    <div class="input-container">
+        <input type="number" name="number" id="first">
+        <span>+</span>
+        <input type="number" name="number" id="second">
+    </div>
+    <div class="button-container">
+        <button onclick="calculate()">Calculate</button>
+    </div>
+    <div class="image-container">
+        <span id="printResult"></span>
+        <div class="image-section" id="image"></div>
+        <span id="imageUrlText"></span>
+    </div>
+</body>
+</html>

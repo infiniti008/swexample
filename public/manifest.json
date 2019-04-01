@@ -1,0 +1,17 @@
+{
+    "name": "Service Worker Examlpe",
+    "short_name": "Example",
+    "theme_color": "#2196f3",
+    "background_color": "#2196f3",
+    "scope": "/",
+    "start_url": "/",
+    "display": "standalone",
+    "icons": [
+        {
+         "src": "icon.png",
+         "sizes": "256x256",
+         "type": "image\/png",
+         "density": "0.75"
+        }
+    ]
+  }
