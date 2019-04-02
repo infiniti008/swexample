@@ -32,3 +32,8 @@ app.get('/getsw/with_changed_scope', (req, res) => {
     res.set('Service-Worker-Allowed', '/').sendFile(__dirname + '/sw_withscope/sw.js');
 
 });
+
+
+app.get('/getstrangeimage', (req, res) => {
+    res.sendFile(__dirname + '/public/images/5.png');
+})

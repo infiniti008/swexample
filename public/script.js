@@ -4,10 +4,11 @@
 let registrationSW = (function (){
     // Проверка того, что наш браузер поддерживает Service Worker API.
     if ('serviceWorker' in navigator) {
-        // Регистрируем новый сервис воркер
+        // Проверяем наличие зарегистрированного сервис воркера
         if (navigator.serviceWorker.controller) {
-            console.log('Сервис воркер уже зарегистрирован!')
+            console.log('Сервис воркер уже зарегистрирован!');
         } else {
+            // Регистрируем новый сервис воркер
             navigator.serviceWorker.register('sw.js')
                 .then(function(registration) {
                     console.log('Регистрация завершена успешно. Scope: ' + registration.scope);
@@ -16,6 +17,17 @@ let registrationSW = (function (){
         }
     }
 })()
+
+
+function deleteCachedImage(){
+    sendMessageToSw(JSON.stringify({
+        keysToDelete: ['/images/3.png']
+    }));
+}
+
+function sendMessageToSw(msg){
+    navigator.serviceWorker.controller.postMessage(msg);
+}
 
 
 // Регистрация сервис воркера с указание неверного Scope
@@ -61,19 +73,20 @@ let test3 = (function (){
 
 
 function calculate(){
-    let sum = 0;
-    let items = document.getElementsByName('number');
-    items.forEach(val => sum += parseInt(val.value));
-    document.getElementById('printResult').innerHTML = sum;
     let imageUrl;
-    if(sum % 5 == 0){
-        imageUrl = 'images/1.png';
-    } else if(sum % 3 == 0){
-        imageUrl = 'images/2.png';
-    } else if( sum % 2 == 0){
-        imageUrl = 'images/3.png';
-    } else {
-        imageUrl = 'images/4.png';
+
+    let imageId = document.getElementById('imageIdInput').value;
+
+    // Нормальная работа
+    let needToRewrite = false;
+    // Для замены на локальный файл
+    needToRewrite = document.getElementById('rewrite').checked;
+
+    if(needToRewrite){
+        imageUrl =  'images/' + imageId + '.png?rewrite=true';
+    }
+    else{
+        imageUrl =  'images/' + imageId + '.png';
     }
 
     document.getElementById('image').innerHTML = "<img src="+ imageUrl +">";

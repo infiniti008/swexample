@@ -10,15 +10,19 @@
 </head>
 <body>
     <div class="input-container">
-        <input type="number" name="number" id="first">
-        <span>+</span>
-        <input type="number" name="number" id="second">
+        <input type="number" name="imageIdInput" id="imageIdInput" value="1">
+        <label for="rewrite">
+            <br>
+            <input type="checkbox" name="rewrite" id="rewrite">
+            <br>
+            Подменить на локальный файл
+        </label>
     </div>
     <div class="button-container">
-        <button onclick="calculate()">Calculate</button>
+        <button onclick="calculate()">SHOW</button>
+        <button onclick="deleteCachedImage()">DELETE 3.png</button>
     </div>
     <div class="image-container">
-        <span id="printResult"></span>
         <div class="image-section" id="image"></div>
         <span id="imageUrlText"></span>
     </div>
